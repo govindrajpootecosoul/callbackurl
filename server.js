@@ -6,7 +6,7 @@ const axios = require('axios');
 const callbackHandler = require('./routes/callback');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3480;
 
 // Middleware
 app.use(cors());
@@ -30,7 +30,7 @@ app.get('/health', (req, res) => {
 
 // Amazon Ads OAuth callback (local development)
 // This should match the redirect URI you configure in the Amazon portal for local testing:
-//   http://localhost:3000/ads/callback
+//   http://localhost:3480/ads/callback
 app.get('/ads/callback', async (req, res) => {
   const { code, state } = req.query;
 
@@ -43,7 +43,7 @@ app.get('/ads/callback', async (req, res) => {
       grant_type: 'authorization_code',
       code: code,
       // Local redirect URI for development
-      redirect_uri: 'http://localhost:3000/ads/callback',
+      redirect_uri: 'http://localhost:3480/ads/callback',
       // In real usage, put these in environment variables
       client_id: process.env.AMAZON_CLIENT_ID || 'YOUR_CLIENT_ID',
       client_secret: process.env.AMAZON_CLIENT_SECRET || 'YOUR_CLIENT_SECRET'
